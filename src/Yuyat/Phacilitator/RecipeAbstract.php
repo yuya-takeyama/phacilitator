@@ -18,6 +18,22 @@ abstract class Yuyat_Phacilitator_RecipeAbstract
 {
     private $name;
 
+    public function getFullName()
+    {
+        $recipe = $this;
+        $name   = $recipe->getName();
+
+        while ($recipe->hasParentGroup()) {
+            $parent = $recipe->getParentGroup();
+
+            $name = "{$parent->getName()}::{$name}";
+
+            $recipe = $parent;
+        }
+
+        return $name;
+    }
+
     abstract public function getDescription();
 
     abstract public function execute(Yuyat_Phacilitator_RecipeArgumentsInterface $args);
@@ -40,6 +56,11 @@ abstract class Yuyat_Phacilitator_RecipeAbstract
     public function getParentGroup()
     {
         return $this->parentGroup;
+    }
+
+    public function hasParentGroup()
+    {
+        return isset($this->parentGroup);
     }
 
     public function isGroup()

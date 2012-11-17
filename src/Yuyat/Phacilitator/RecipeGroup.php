@@ -46,6 +46,11 @@ class Yuyat_Phacilitator_RecipeGroup
         return $this->parentGroup;
     }
 
+    public function hasParentGroup()
+    {
+        return isset($this->parentGroup);
+    }
+
     public function set($name, Yuyat_Phacilitator_RecipeNodeInterface $recipe)
     {
         $this->recipes[$name] = $recipe;
@@ -78,12 +83,12 @@ class Yuyat_Phacilitator_RecipeGroup
 
     public function hasChildren()
     {
-        return $this->current() instanceof Yuyat_Phacilitator_RecipeGroup;
+        return $this->current() instanceof self;
     }
 
     public function getChildren()
     {
-        return new ArrayIterator($this->recipes);
+        return $this->current();
     }
 
     public function rewind()

@@ -16,10 +16,4 @@
 class Yuyat_Phacilitator_Project
     extends Yuyat_Phacilitator_RecipeGroup
 {
-    private $name;
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
 }

@@ -6,20 +6,5 @@ $loader = new SplClassLoader('Yuyat', dirname(__FILE__) . '/../src');
 $loader->setNamespaceSeparator('_');
 $loader->register();
 
-$file = './.phacilitator/project.php';
-if (! file_exists($file)) {
-    throw new RuntimeException(
-        sprintf(
-            'Definition file is not found (%s)',
-            realpath($file)
-        )
-    );
-}
-
-$project = include $file;
-
-$recipeIterator = new RecursiveIteratorIterator($project->get('deploy'));
-
-foreach ($recipeIterator as $name => $recipe) {
-    var_dump($recipe);
-}
+$app = new Yuyat_Phacilitator_Application;
+exit($app->run($argv));

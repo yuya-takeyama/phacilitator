@@ -16,6 +16,8 @@
 interface Yuyat_Phacilitator_RecipeInterface
     extends Yuyat_Phacilitator_RecipeNodeInterface
 {
+    public function getFullName();
+
     public function getDescription();
 
     public function execute(Yuyat_Phacilitator_RecipeArgumentsInterface $args);
