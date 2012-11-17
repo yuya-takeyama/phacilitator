@@ -62,9 +62,4 @@ abstract class Yuyat_Phacilitator_RecipeAbstract
     {
         return isset($this->parentGroup);
     }
-
-    public function isGroup()
-    {
-        return false;
-    }
 }

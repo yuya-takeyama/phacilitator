@@ -22,6 +22,4 @@ interface Yuyat_Phacilitator_RecipeNodeInterface
     public function getParentGroup();
 
     public function hasParentGroup();
-
-    public function isGroup();
 }

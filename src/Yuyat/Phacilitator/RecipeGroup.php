@@ -76,11 +76,6 @@ class Yuyat_Phacilitator_RecipeGroup
         return array_keys($this->recipes);
     }
 
-    public function isGroup()
-    {
-        return true;
-    }
-
     public function hasChildren()
     {
         return $this->current() instanceof self;
