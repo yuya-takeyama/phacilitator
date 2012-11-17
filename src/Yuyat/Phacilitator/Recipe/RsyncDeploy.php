@@ -21,8 +21,11 @@ class Yuyat_Phacilitator_Recipe_RsyncDeploy
         return "Deployer using rsync";
     }
 
-    public function execute(Yuyat_Phacilitator_RecipeArgumentsInterface $args)
+    public function execute(
+        Yuyat_Phacilitator_InputInterface $input,
+        Yuyat_Phacilitator_OutputInterface $output
+    )
     {
-        echo "Do rsync deploy", PHP_EOL;
+        $output->writeln('Do rsync deploy');
     }
 }

@@ -7,4 +7,7 @@ $loader->setNamespaceSeparator('_');
 $loader->register();
 
 $app = new Yuyat_Phacilitator_Application;
-exit($app->run($argv));
+exit($app->run(
+    new Yuyat_Phacilitator_Input($argc, $argv, STDIN),
+    new Yuyat_Phacilitator_Output(STDOUT, STDERR)
+));

@@ -32,9 +32,9 @@ class Yuyat_Phacilitator_ProjectBuilder
     {
         $group = new Yuyat_Phacilitator_RecipeGroup($name);
 
-        foreach ($recipes as $recipeName => $recipe) {
+        foreach ($recipes as $recipe) {
             $recipe->setParentGroup($group);
-            $group->set($recipeName, $recipe);
+            $group->set($recipe->getName(), $recipe);
         }
 
         return $group;

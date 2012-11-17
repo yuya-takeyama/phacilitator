@@ -16,4 +16,19 @@
 class Yuyat_Phacilitator_Project
     extends Yuyat_Phacilitator_RecipeGroup
 {
+    public function findRecipe($name)
+    {
+        $names  = explode('::', $name);
+        $recipe = $this;
+
+        while (true) {
+            $next = $recipe->get(array_shift($names));
+
+            if (count($names) === 0) {
+                return $next && $next instanceof Yuyat_Phacilitator_RecipeInterface ? $next : null;
+            }
+
+            $recipe = $next;
+        }
+    }
 }

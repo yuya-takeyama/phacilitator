@@ -20,5 +20,8 @@ interface Yuyat_Phacilitator_RecipeInterface
 
     public function getDescription();
 
-    public function execute(Yuyat_Phacilitator_RecipeArgumentsInterface $args);
+    public function execute(
+        Yuyat_Phacilitator_InputInterface $input,
+        Yuyat_Phacilitator_OutputInterface $output
+    );
 }

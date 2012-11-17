@@ -24,27 +24,44 @@ class Yuyat_Phacilitator_Application
      */
     private $project;
 
-    public function run($argv)
+    public function run(
+        Yuyat_Phacilitator_InputInterface  $input,
+        Yuyat_Phacilitator_OutputInterface $output
+    )
     {
         $this->loadProject();
+
+        $argc = $input->getArgc();
 
         echo "Phacilitator ver. " . self::VERSION, PHP_EOL, PHP_EOL;
         echo "Project: {$this->project->getName()}", PHP_EOL, PHP_EOL;
 
-        if (count($argv) === 1) {
-            return $this->listAction();
+        if ($argc === 1) {
+            return $this->listAction($input, $output);
+        } else {
+            return $this->executeAction($input, $output);
         }
     }
 
-    public function listAction()
+    public function listAction($input, $output)
     {
-        echo "Recipes", PHP_EOL;
+        $output->writeln("Recipes");
 
         foreach (new RecursiveIteratorIterator($this->project) as $recipe) {
-            echo "  {$recipe->getFullName()}\t{$recipe->getDescription()}", PHP_EOL;
+            $output->writeln("  {$recipe->getFullName()}\t{$recipe->getDescription()}");
         }
 
         return self::EXIT_OK;
+    }
+
+    public function executeAction($input, $output)
+    {
+        $argv       = $input->getArgv();
+        $recipeName = $argv[1];
+
+        $recipe = $this->project->findRecipe($recipeName);
+
+        $recipe->execute($input, $output);
     }
 
     private function loadProject()

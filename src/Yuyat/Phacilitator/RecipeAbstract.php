@@ -36,7 +36,10 @@ abstract class Yuyat_Phacilitator_RecipeAbstract
 
     abstract public function getDescription();
 
-    abstract public function execute(Yuyat_Phacilitator_RecipeArgumentsInterface $args);
+    abstract public function execute(
+        Yuyat_Phacilitator_InputInterface $input,
+        Yuyat_Phacilitator_OutputInterface $output
+    );
 
     public function setName($name)
     {
